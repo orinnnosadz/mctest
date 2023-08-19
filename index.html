@@ -1,1 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Time Difference Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="date"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            width: 100%;
+            background-color: #1624FB;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #106ebe;
+        }
+        .result {
+            margin-top: 20px;
+        } 
+        .dark-mode {
+            background-color: #1b1a19;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Time Difference Calculator</h1>
+        <form id="form">
+            <label for="date1">Ngày bắt đầu</label>
+            <input type="date" id="date1" name="date1">
+            
+            <label for="date2">Ngày kết thúc</label>
+            <input type="date" id="date2" name="date2">
+            
+            <input type="submit" value="Bấm để tính">
+        </form>
+        
+        <div class="result"></div>
+        
+        <button id="mode">Toggle Dark Mode</button>
+    </div>
 
+    <script>
+        const form = document.querySelector('#form');
+        const result = document.querySelector('.result');
+        
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const date1 = new Date(form.date1.value);
+            const date2 = new Date(form.date2.value);
+            
+            const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+            
+            const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+            
+            result.innerHTML = `<strong>Result:</strong> ${diffDays} days`;
+        });
+        
+        const mode = document.querySelector('#mode');
+        
+        mode.addEventListener('click', () => {
+           document.body.classList.toggle('dark-mode'); 
+        });
+    </script>
+</body>
+</html>
